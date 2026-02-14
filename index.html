@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Versions of Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- 🔒 BUSY SCREEN -->
+<div id="busyScreen" style="
+  position:fixed; inset:0; background:#000; color:#fff; display:none;
+  align-items:center; justify-content:center; text-align:center;
+  z-index:10001; padding:24px;">
+  <div>
+    <h1 style="font-weight:400;">Someone is viewing this story</h1>
+    <p id="busyStatus" style="opacity:0.7; margin-top:12px;">Please wait…</p>
+    <p id="busyTimer" style="margin-top:12px; opacity:0.5;"></p>
+    <button onclick="location.reload()" style="margin-top:24px;">Try Again</button>
+  </div>
+</div>
+
+<!-- 💌 LETTER INTRO -->
+<section class="scene letter-scene">
+  <div class="overlay"></div>
+  <div class="content letter-content show">
+    <h4>A LETTER FOR YOU</h4>
+    <h1>Before the story begins…</h1>
+
+    <div id="fullLetter" style="display:none;">
+One of your classmates has been single since childhood until now. That person is me.
+
+I don’t know how to explain what life looks like without love, but I know how it feels when I see you.
+Somehow, the world feels quieter, and my heart feels louder.
+
+I kept this inside for a long time, not because I was afraid, but because I wanted to say it properly.
+
+I like you. I care about you. And I wanted to share this honestly.
+    </div>
+
+    <p class="letter-text" id="letterText"></p>
+    <button id="openStoryBtn" style="display:none;">Open the story</button>
+  </div>
+</section>
+
+<!-- HERO + CHAPTERS -->
+<section class="scene">
+  <img src="images/photo1.jpeg" class="bg-img" alt="">
+  <div class="overlay"></div>
+  <div class="content">
+    <h4>VERSIONS OF ME</h4>
+    <h1>We all have versions of ourselves we don’t recognize anymore.</h1>
+    <p>MOMENTS THAT SHAPED WHO I BECAME</p>
+  </div>
+</section>
+
+<section class="scene">
+  <img src="images/photo2.jpeg" class="bg-img" alt="">
+  <div class="overlay"></div>
+  <div class="content">
+    <h4>CHAPTER ONE</h4>
+    <h1>Innocence</h1>
+    <p>Before the world taught me to be careful, I ran without fear.</p>
+  </div>
+</section>
+
+<section class="scene">
+  <img src="images/photo3.jpeg" class="bg-img" alt="">
+  <div class="overlay"></div>
+  <div class="content">
+    <h4>CHAPTER TWO</h4>
+    <h1>Confusion</h1>
+    <p>Questions came faster than answers.</p>
+  </div>
+</section>
+
+<section class="scene">
+  <img src="images/photo4.jpeg" class="bg-img" alt="">
+  <div class="overlay"></div>
+  <div class="content">
+    <h4>CHAPTER THREE</h4>
+    <h1>Conflict</h1>
+    <p>Not everything I believed survived reality.</p>
+  </div>
+</section>
+
+<!-- 🔒 LOCKED (261 UNIQUE LIKES) -->
+<section class="scene lock" id="lockSection">
+  <img src="images/photo5.jpeg" class="bg-img" alt="">
+  <div class="overlay"></div>
+  <div class="content">
+    <h4>LOCKED</h4>
+    <h1>Curiosity unlocks what fear hides</h1>
+
+    <p style="opacity:0.8; margin-bottom:12px;">
+      Hey buddies, show your curiosity with one like to unlock the photo and see my love.
+    </p>
+
+    <button id="heartBtn">♥ Curiosity</button>
+
+    <div class="progress-wrap" style="margin-top:16px;">
+      <div class="progress-bar-bg" style="width:100%; height:10px; background:#333; border-radius:999px; overflow:hidden;">
+        <div id="progressBar" style="height:100%; width:0%; background:#fff; transition:width 0.5s ease;"></div>
+      </div>
+    </div>
+
+    <p class="counter" style="margin-top:10px;">
+      <span id="count">0</span> / 261
+    </p>
+
+    <p id="likesLeft" style="margin-top:6px; opacity:0.7;">
+      261 likes left to unlock
+    </p>
+  </div>
+</section>
+
+<!-- HIDDEN -->
+<div id="hiddenSections">
+  <section class="scene">
+    <img src="images/photo6.jpeg" class="bg-img" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <h4>CHAPTER FOUR</h4>
+      <h1>Acceptance</h1>
+      <p>Growth didn’t feel beautiful. But it was necessary.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <img src="images/photo7.jpeg" class="bg-img" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <h4>CHAPTER FIVE</h4>
+      <h1>Reflection</h1>
+      <p>Some answers only come after silence.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <img src="images/photo8.jpeg" class="bg-img" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <h4>CHAPTER SIX</h4>
+      <h1>Rebuilding</h1>
+      <p>I learned to assemble myself differently.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <img src="images/photo9.jpeg" class="bg-img" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <h4>CHAPTER SEVEN</h4>
+      <h1>Clarity</h1>
+      <p>Not everything needs to be understood to be accepted.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <img src="images/photo10.jpeg" class="bg-img" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <h4>FINAL</h4>
+      <h1>Reconstruction</h1>
+      <p>I am not who I was. And that’s okay.</p>
+    </div>
+  </section>
+</div>
+
+<div class="fade-layer" id="fadeLayer"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script src="js/script.js"></script>
+</body>
+</html>
