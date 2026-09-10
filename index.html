@@ -1,181 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Versions of Me</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0a">
+  <meta name="description" content="A classified birthday archive documenting the evolution of Vishnu, aka M7.">
+  <meta property="og:title" content="M7 — The Vintage Archives">
+  <meta property="og:description" content="A classified birthday archive documenting the evolution of Vishnu, aka M7.">
+  <title>M7 — The Vintage Archives</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scratch scratch-a" aria-hidden="true"></div>
+  <div class="scratch scratch-b" aria-hidden="true"></div>
 
-<!-- 🔒 BUSY SCREEN -->
-<div id="busyScreen" style="
-  position:fixed; inset:0; background:#000; color:#fff; display:none;
-  align-items:center; justify-content:center; text-align:center;
-  z-index:10001; padding:24px;">
-  <div>
-    <h1 style="font-weight:400;">Someone is viewing this story</h1>
-    <p id="busyStatus" style="opacity:0.7; margin-top:12px;">Please wait…</p>
-    <p id="busyTimer" style="margin-top:12px; opacity:0.5;"></p>
-    <button onclick="location.reload()" style="margin-top:24px;">Try Again</button>
-  </div>
-</div>
+  <header class="topbar" aria-label="Archive status">
+    <span class="topbar__mark">M7 / CLASSIFIED</span>
+    <span class="topbar__progress" id="progressText">00 / 10</span>
+  </header>
 
-<!-- 💌 LETTER INTRO -->
-<section class="scene letter-scene">
-  <div class="overlay"></div>
-  <div class="content letter-content show">
-    <h4>A LETTER FOR YOU</h4>
-    <h1>Before the story begins…</h1>
-
-    <div id="fullLetter" style="display:none;">
-One of your classmates has been single since childhood until now. That person is me.
-
-I don’t know how to explain what life looks like without love, but I know how it feels when I see you.
-Somehow, the world feels quieter, and my heart feels louder.
-
-I kept this inside for a long time, not because I was afraid, but because I wanted to say it properly.
-
-I like you. I care about you. And I wanted to share this honestly.
-    </div>
-
-    <p class="letter-text" id="letterText"></p>
-    <button id="openStoryBtn" style="display:none;">Open the story</button>
-  </div>
-</section>
-
-<!-- HERO + CHAPTERS -->
-<section class="scene">
-  <img src="photo1.jpeg" class="bg-img" alt="">
-  <div class="overlay"></div>
-  <div class="content">
-    <h4>VERSIONS OF ME</h4>
-    <h1>We all have versions of ourselves we don’t recognize anymore.</h1>
-    <p>MOMENTS THAT SHAPED WHO I BECAME</p>
-  </div>
-</section>
-
-<section class="scene">
-  <img src="photo2.jpeg" class="bg-img" alt="">
-  <div class="overlay"></div>
-  <div class="content">
-    <h4>CHAPTER ONE</h4>
-    <h1>Innocence</h1>
-    <p>Before the world taught me to be careful, I ran without fear.</p>
-  </div>
-</section>
-
-<section class="scene">
-  <img src="photo3.jpeg" class="bg-img" alt="">
-  <div class="overlay"></div>
-  <div class="content">
-    <h4>CHAPTER TWO</h4>
-    <h1>Confusion</h1>
-    <p>Questions came faster than answers.</p>
-  </div>
-</section>
-
-<section class="scene">
-  <img src="photo4.jpeg" class="bg-img" alt="">
-  <div class="overlay"></div>
-  <div class="content">
-    <h4>CHAPTER THREE</h4>
-    <h1>Conflict</h1>
-    <p>Not everything I believed survived reality.</p>
-  </div>
-</section>
-
-<!-- 🔒 LOCKED (261 UNIQUE LIKES) -->
-<section class="scene lock" id="lockSection">
-  <img src="photo5.jpeg" class="bg-img" alt="">
-  <div class="overlay"></div>
-  <div class="content">
-    <h4>LOCKED</h4>
-    <h1>Curiosity unlocks what fear hides</h1>
-
-    <p style="opacity:0.8; margin-bottom:12px;">
-      Hey buddies, show your curiosity with one like to unlock the photo and see my love.
-    </p>
-
-    <button id="heartBtn">♥ Curiosity</button>
-
-    <div class="progress-wrap" style="margin-top:16px;">
-      <div class="progress-bar-bg" style="width:100%; height:10px; background:#333; border-radius:999px; overflow:hidden;">
-        <div id="progressBar" style="height:100%; width:0%; background:#fff; transition:width 0.5s ease;"></div>
+  <main>
+    <section class="opening" id="opening" aria-labelledby="opening-title">
+      <div class="opening__inner">
+        <p class="eyebrow reveal">ARCHIVE SYSTEM <span>•</span> 2026</p>
+        <p class="micro-label reveal">CASE FILE: M7-001 / ACCESS LEVEL: FRIENDS ONLY</p>
+        <h1 id="opening-title" class="opening__title reveal">M7</h1>
+        <p class="opening__subtitle reveal">THE VINTAGE ARCHIVES</p>
+        <p class="opening__dek reveal">A classified record of the evolution of one legendary classmate.</p>
+        <button class="archive-button reveal" id="enterButton" type="button">ENTER THE ARCHIVES <span aria-hidden="true">↗</span></button>
+        <p class="opening__note reveal">No login required. No evidence will be deleted.</p>
       </div>
+      <div class="scroll-cue" aria-hidden="true"><span></span> SCROLL TO INVESTIGATE</div>
+    </section>
+
+    <section class="prologue" id="prologue" aria-labelledby="prologue-title">
+      <div class="prologue__inner">
+        <p class="eyebrow">PRELIMINARY NOTES / 01</p>
+        <h2 id="prologue-title"><span>Every legend has an</span><em>origin story.</em></h2>
+        <p class="prologue__beat">Unfortunately...</p>
+        <p class="prologue__beat">we found the evidence.</p>
+        <div class="subject-card"><span>SUBJECT</span><strong>VISHNU</strong><span>CODENAME</span><strong>M7</strong><small>DOCUMENT QUALITY: HIGHLY EMBARRASSING</small></div>
+      </div>
+    </section>
+
+    <div class="archive-list" id="archives">
+      <section class="archive archive--comedy reveal-section" data-index="1" aria-labelledby="archive-title-1">
+        <div class="archive__media"><img src="photo1.jpeg" alt="Archive photograph 1 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 01 / ORIGIN</p><h2 id="archive-title-1">THE BEGINNING</h2><p>Every legend has an origin story.<br>Unfortunately, we found the evidence.</p><span class="archive__meta">SUBJECT: M7 &nbsp;•&nbsp; ERA: CLASSIFIED</span></div>
+      </section>
+      <section class="archive archive--comedy reveal-section" data-index="2" aria-labelledby="archive-title-2">
+        <div class="archive__media"><img src="photo2.jpeg" alt="Archive photograph 2 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 02 / EARLY YEARS</p><h2 id="archive-title-2">EARLY WARNING SIGNS</h2><p>Looking back now...<br>the signs were already there.</p><span class="archive__meta">BEHAVIOUR: QUESTIONABLE &nbsp;•&nbsp; STATUS: PROMISING</span></div>
+      </section>
+      <section class="archive archive--comedy reveal-section" data-index="3" aria-labelledby="archive-title-3">
+        <div class="archive__media"><img src="photo3.jpeg" alt="Archive photograph 3 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 03 / EXPERIMENTAL PERIOD</p><h2 id="archive-title-3">THE EXPERIMENTAL ERA</h2><p>Fashion was not just a choice.<br>It was an experiment.</p><span class="archive__meta">STYLE PROTOCOL: STILL IN BETA</span></div>
+      </section>
+      <section class="archive archive--comedy reveal-section" data-index="4" aria-labelledby="archive-title-4">
+        <div class="archive__media"><img src="photo4.jpeg" alt="Archive photograph 4 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 04 / CONFIDENCE LEVEL</p><h2 id="archive-title-4">CONFIDENCE: 100%</h2><p>Confidence was never the problem.<br>Everything else was still loading.</p><span class="archive__meta">SELF-BELIEF: FULL BATTERY &nbsp;•&nbsp; LOGIC: CONNECTING...</span></div>
+      </section>
+      <section class="archive archive--comedy reveal-section" data-index="5" aria-labelledby="archive-title-5">
+        <div class="archive__media"><img src="photo5.jpeg" alt="Archive photograph 5 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 05 / CLASSIFIED</p><h2 id="archive-title-5">THE CRINGE ERA</h2><p>We would like to say this never happened.<br>Unfortunately, photographic evidence exists.</p><span class="archive__meta">ARCHIVE SECURITY: FAILED</span></div>
+      </section>
+      <section class="archive archive--transform reveal-section" data-index="6" aria-labelledby="archive-title-6">
+        <div class="archive__media"><img src="photo6.jpeg" alt="Archive photograph 6 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 06 / CHARACTER DEVELOPMENT</p><h2 id="archive-title-6">CHARACTER DEVELOPMENT</h2><p>Somehow...<br>he survived this era.</p><span class="archive__meta">RESILIENCE INDEX: IMPRESSIVE</span></div>
+      </section>
+      <section class="archive archive--transform reveal-section" data-index="7" aria-labelledby="archive-title-7">
+        <div class="archive__media"><img src="photo7.jpeg" alt="Archive photograph 7 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 07 / TRANSFORMATION</p><h2 id="archive-title-7">THE TRANSFORMATION</h2><p>Somewhere along the way,<br>things started getting serious.</p><span class="archive__meta">SUBJECT MATURITY: DETECTED</span></div>
+      </section>
+      <section class="archive archive--transform reveal-section" data-index="8" aria-labelledby="archive-title-8">
+        <div class="archive__media"><img src="photo8.jpeg" alt="Archive photograph 8 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 08 / FINAL FORM</p><h2 id="archive-title-8">M7 UNLOCKED</h2><p>The evolution was almost complete.</p><span class="archive__meta">VERSION: M7.0 &nbsp;•&nbsp; ACCESS: LEGENDARY</span></div>
+      </section>
+      <section class="archive archive--emotion reveal-section" data-index="9" aria-labelledby="archive-title-9">
+        <div class="archive__media"><img src="photo9.jpeg" alt="Archive photograph 9 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">ARCHIVE 09 / B.TECH ERA</p><h2 id="archive-title-9">AND THEN CAME B.TECH</h2><p>The archives became classified.<br>M7 had officially entered the next chapter.</p><span class="archive__meta">TIMELINE: CURRENT &nbsp;•&nbsp; MEMORIES: INTACT</span></div>
+      </section>
+      <section class="archive archive--final reveal-section" data-index="10" id="finalArchive" aria-labelledby="archive-title-10">
+        <div class="archive__media"><img src="photo10.jpeg" alt="Archive photograph 10 of Vishnu" loading="lazy"><span class="image-fallback">ARCHIVE IMAGE UNAVAILABLE</span></div>
+        <div class="archive__copy"><p class="archive__label">FINAL ARCHIVE</p><h2 id="archive-title-10"><small>THE LEGEND</small>HAPPY BIRTHDAY,<br>VISHNU!</h2><p>From vintage cringe...<br>to M7.</p><span class="archive__meta">THE ARCHIVES MAY BE OLD. THE MEMORIES AREN'T.</span></div>
+        <div class="celebration" id="celebration" aria-hidden="true"></div>
+      </section>
     </div>
 
-    <p class="counter" style="margin-top:10px;">
-      <span id="count">0</span> / 261
-    </p>
+    <section class="public-message reveal-section" aria-labelledby="public-title">
+      <p class="eyebrow">PUBLIC RECORD / CELEBRATION</p>
+      <h2 id="public-title">HAPPY BIRTHDAY,<br><em>M7</em> <span aria-hidden="true">🎂</span></h2>
+      <div class="message-copy"><p>Another year older.<br>Another year wiser.<br>And somehow...<br>these photos still survived.</p><p>Here's to another year of friendship, laughter, chaos, unforgettable moments, and many more memories.</p><p>Stay happy.<br>Stay crazy.<br>Keep being you.</p></div>
+      <p class="closing-line">HAPPY BIRTHDAY, VISHNU <span aria-hidden="true">♥</span></p><p class="from-line">— From your class</p>
+      <button class="archive-button archive-button--quiet" id="privateButton" type="button">ONE LAST MESSAGE <span aria-hidden="true">↗</span></button>
+    </section>
 
-    <p id="likesLeft" style="margin-top:6px; opacity:0.7;">
-      261 likes left to unlock
-    </p>
-  </div>
-</section>
+    <section class="private-message" id="privateMessage" aria-labelledby="private-title" hidden>
+      <div class="private-message__inner">
+        <p class="eyebrow">ACCESSING SEALED NOTE / 01</p>
+        <h2 id="private-title"><span>THIS MESSAGE IS DIFFERENT.</span><em>NOT FOR THE ARCHIVES.</em></h2>
+        <div class="letter"><p>Dear Vishnu,</p><p>Everyone knows you as M7.<br>Everyone has their own memories of you.</p><p>But somewhere between all the jokes, random conversations and little moments, you became someone genuinely special to me.</p><p>I don't know exactly when that happened.<br>I just know that I'm glad it did.</p><p>So beyond all the birthday wishes, all the jokes and all these embarrassing archives...</p><p>I simply wanted you to know that your presence means more than you probably realize.</p><p>Happy Birthday, Vishnu. <span aria-hidden="true">♥</span></p><p class="signature">— From someone who wanted to say this differently.</p></div>
+        <button class="archive-button archive-button--quiet" id="endButton" type="button">CLOSE THE FILE <span aria-hidden="true">↓</span></button>
+      </div>
+    </section>
 
-<!-- HIDDEN -->
-<div id="hiddenSections">
-  <section class="scene">
-    <img src="photo6.jpeg" class="bg-img" alt="">
-    <div class="overlay"></div>
-    <div class="content">
-      <h4>CHAPTER FOUR</h4>
-      <h1>Acceptance</h1>
-      <p>Growth didn’t feel beautiful. But it was necessary.</p>
-    </div>
-  </section>
-
-  <section class="scene">
-    <img src="photo7.jpeg" class="bg-img" alt="">
-    <div class="overlay"></div>
-    <div class="content">
-      <h4>CHAPTER FIVE</h4>
-      <h1>Reflection</h1>
-      <p>Some answers only come after silence.</p>
-    </div>
-  </section>
-
-  <section class="scene">
-    <img src="photo8.jpeg" class="bg-img" alt="">
-    <div class="overlay"></div>
-    <div class="content">
-      <h4>CHAPTER SIX</h4>
-      <h1>Rebuilding</h1>
-      <p>I learned to assemble myself differently.</p>
-    </div>
-  </section>
-
-  <section class="scene">
-    <img src="photo9.jpeg" class="bg-img" alt="">
-    <div class="overlay"></div>
-    <div class="content">
-      <h4>CHAPTER SEVEN</h4>
-      <h1>Clarity</h1>
-      <p>Not everything needs to be understood to be accepted.</p>
-    </div>
-  </section>
-
-  <section class="scene">
-    <img src="photo10.jpeg" class="bg-img" alt="">
-    <div class="overlay"></div>
-    <div class="content">
-      <h4>FINAL</h4>
-      <h1>Reconstruction</h1>
-      <p>I am not who I was. And that’s okay.</p>
-    </div>
-  </section>
-</div>
-
-<div class="fade-layer" id="fadeLayer"></div>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script src="script.js"></script>
+    <section class="end-screen" id="endScreen" aria-labelledby="end-title" hidden>
+      <div class="end-screen__inner"><p class="eyebrow">ARCHIVE STATUS</p><p class="end-code">M7<br>VISHNU</p><div class="status-rule"></div><p class="status-label">STATUS: <strong>LEGENDARY</strong></p><p class="status-label">FILE: <strong>NEVER TO BE DELETED</strong></p><h2 id="end-title">THE END</h2><p>Happy Birthday, M7. <span aria-hidden="true">🎂</span></p><button class="archive-button" id="replayButton" type="button">REPLAY THE ARCHIVES <span aria-hidden="true">↺</span></button></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
-
-
