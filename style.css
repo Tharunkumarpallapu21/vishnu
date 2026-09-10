@@ -181,3 +181,12 @@ body{min-width:0}
   .public-message,.private-message,.end-screen{padding-left:16px;padding-right:16px}
   .message-copy,.private-message__inner,.end-screen__inner{width:100%;max-width:none}
 }
+
+
+/* 390PX LIVE AUDIT FIX */
+@media(max-width:700px){
+  .opening__inner>.micro-label{display:block;width:100%;max-width:100%;padding-inline:8px;overflow-wrap:anywhere;word-break:normal;white-space:normal;text-align:center}
+  .opening__inner>.eyebrow{width:100%;max-width:100%;overflow-wrap:anywhere}
+  .hero-statement{max-width:100%;white-space:normal;text-align:center}
+  .opening .archive-button{max-width:100%}
+}
