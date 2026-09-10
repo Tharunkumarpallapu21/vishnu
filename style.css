@@ -164,3 +164,20 @@ body::before{background:radial-gradient(ellipse 38% 28% at var(--pointer-x) var(
 @media(max-width:700px){.opening{padding-top:111px;padding-bottom:124px}.opening::after{inset:8% 4% 7%}.opening__inner::before{margin-bottom:15px}.hero-progress{margin-bottom:21px;width:calc(100% - 8px)}.hero-progress span:not(.hero-progress__line){font-size:7px}.opening__inner>.eyebrow{font-size:10px}.opening__inner>.micro-label{font-size:11px;line-height:1.6}.opening__title{font-size:35vw;margin-top:30px}.opening__subtitle{font-size:11px;letter-spacing:.27em}.opening__dek{font-size:1.25rem;max-width:320px}.hero-statement{font-size:7px;letter-spacing:.1em;gap:7px}.hero-statement::before,.hero-statement::after{width:25px}.opening .archive-button{height:61px;letter-spacing:.18em}.scroll-cue{bottom:73px}.hero-footer{bottom:27px;font-size:7px;letter-spacing:.12em}.hero-tape--left{left:-50px;top:30%;width:95px;height:190px}.hero-tape--right{right:-31px;bottom:13%;width:94px;height:115px}.classified-mark{right:-60px;top:25%;width:135px;height:135px;font-size:15px}}
 @media(min-width:701px){.opening__inner{display:grid;grid-template-columns:1fr;justify-items:center}.hero-progress{order:initial}.opening__inner>.eyebrow{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){.scroll-cue span::after{animation:none}}
+
+
+/* FULL-VIEWPORT FOUNDATION / MOBILE ROOT FIX */
+html,body,main,.archive-list{width:100%;max-width:100%;min-width:0;margin-left:0;margin-right:0}
+body{min-width:0}
+@media(max-width:700px){
+  main,.opening,.prologue,.archive-list,.public-message,.private-message,.end-screen{width:100%;max-width:none;min-width:0}
+  .opening{padding-left:16px;padding-right:16px}
+  .opening__inner{width:100%;max-width:none;min-width:0}
+  .topbar{width:100%;max-width:none;left:0;right:0}
+  .hero-progress{width:100%;max-width:none}
+  .archive,.archive:nth-child(even){width:100%;max-width:none;padding-left:16px;padding-right:16px}
+  .archive::after{left:16px;right:16px}
+  .archive-timeline{left:16px;right:16px;width:calc(100% - 32px)}
+  .public-message,.private-message,.end-screen{padding-left:16px;padding-right:16px}
+  .message-copy,.private-message__inner,.end-screen__inner{width:100%;max-width:none}
+}
