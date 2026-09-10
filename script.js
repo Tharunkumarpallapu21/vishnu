@@ -26,7 +26,7 @@
 
   // AUTOMATIC ORIGINALITY REVEAL: preload the real project photos once, then play them in order.
   const playOriginalityReveal = () => {
-    const photoPaths = Array.from({ length: 7 }, (_, index) => `./photo${index + 1}.jpeg`);
+    const photoPaths = Array.from({ length: 7 }, (_, index) => `./reveal-images/photo${index + 1}.jpeg`);
     const loaded = photoPaths.map((path) => new Promise((resolve) => {
       const image = new Image();
       image.decoding = 'async';
