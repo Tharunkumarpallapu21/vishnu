@@ -26,7 +26,16 @@
 
   // AUTOMATIC ORIGINALITY REVEAL: preload the real project photos once, then play them in order.
   const playOriginalityReveal = () => {
-    const photoPaths = Array.from({ length: 7 }, (_, index) => `./reveal-images/photo${index + 1}.jpeg`);
+    const vishnuPhotos = [
+      './reveal-images/IMG-20260911-WA0014.jpg',
+      './reveal-images/IMG-20260911-WA0038.jpg',
+      './reveal-images/IMG-20260911-WA0037.jpg',
+      './reveal-images/IMG-20260911-WA0045.jpg',
+      './reveal-images/IMG-20260911-WA0050.jpg',
+      './reveal-images/IMG-20260911-WA0006.jpg',
+      './reveal-images/IMG-20260911-WA0003.jpg'
+    ];
+    const photoPaths = vishnuPhotos;
     const loaded = photoPaths.map((path) => new Promise((resolve) => {
       const image = new Image();
       image.decoding = 'async';
