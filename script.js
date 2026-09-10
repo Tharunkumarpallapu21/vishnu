@@ -14,8 +14,24 @@
   const endScreen = document.querySelector('#endScreen');
   const replayButton = document.querySelector('#replayButton');
   const timelineLinks = [...document.querySelectorAll('[data-timeline]')];
+  const menuToggle = document.querySelector('#menuToggle');
+  const archiveMenu = document.querySelector('#archiveMenu');
+  const menuClose = document.querySelector('#menuClose');
+  const menuLinks = [...document.querySelectorAll('.archive-menu__links a')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // ARCHIVE INDEX MENU
+  const setMenu = (isOpen) => {
+    archiveMenu.hidden = !isOpen;
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+    if (isOpen) menuClose.focus();
+  };
+  menuToggle.addEventListener('click', () => setMenu(archiveMenu.hidden));
+  menuClose.addEventListener('click', () => setMenu(false));
+  menuLinks.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !archiveMenu.hidden) setMenu(false); });
 
   // INTRO
   enterButton.addEventListener('click', () => {

@@ -31,7 +31,11 @@
   <header class="topbar" aria-label="Archive status">
     <span class="topbar__mark">M7 / CLASSIFIED</span>
     <span class="topbar__progress" id="progressText">00 / 10</span>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="archiveMenu"><span></span><span></span><span></span><b>INDEX</b></button>
   </header>
+  <nav class="archive-menu" id="archiveMenu" aria-label="Archive index" hidden>
+    <div class="archive-menu__inner"><p class="eyebrow">ARCHIVE INDEX / M7-001</p><button class="menu-close" id="menuClose" type="button" aria-label="Close archive index">×</button><h2>THE FILES</h2><div class="archive-menu__links"><a href="#archive-title-1">01 <span>ORIGIN</span></a><a href="#archive-title-2">02 <span>EARLY YEARS</span></a><a href="#archive-title-3">03 <span>EXPERIMENTAL ERA</span></a><a href="#archive-title-4">04 <span>CONFIDENCE</span></a><a href="#archive-title-5">05 <span>CRINGE ERA</span></a><a href="#archive-title-6">06 <span>CHARACTER DEVELOPMENT</span></a><a href="#archive-title-7">07 <span>TRANSFORMATION</span></a><a href="#archive-title-8">08 <span>M7 UNLOCKED</span></a><a href="#archive-title-9">09 <span>B.TECH</span></a><a href="#archive-title-10">10 <span>FINAL FORM</span></a></div></div>
+  </nav>
   <aside class="archive-timeline" aria-label="Archive chapters">
     <span class="archive-timeline__line"></span>
     <a href="#archive-title-1" data-timeline="1">01 <b>ORIGIN</b></a>
@@ -51,9 +55,11 @@
       <div class="opening__inner">
         <p class="eyebrow reveal">ARCHIVE SYSTEM <span>•</span> 2026</p>
         <p class="micro-label reveal">CASE FILE: M7-001 / ACCESS LEVEL: FRIENDS ONLY</p>
+        <div class="hero-progress reveal" aria-label="Archive progress"><span class="hero-progress__line"><i></i></span><span>CASE PROGRESS</span><span>FRIENDS ONLY</span></div>
         <h1 id="opening-title" class="opening__title reveal">M7</h1>
         <p class="opening__subtitle reveal">THE VINTAGE ARCHIVES</p>
         <p class="opening__dek reveal">A classified record of the evolution of one legendary classmate.</p>
+        <p class="hero-statement reveal">SOME STORIES SHOULD NEVER BE DELETED.</p>
         <button class="archive-button reveal" id="enterButton" type="button">ENTER THE ARCHIVES <span aria-hidden="true">↗</span></button>
         <p class="opening__note reveal">No login required. No evidence will be deleted.</p>
       </div>
