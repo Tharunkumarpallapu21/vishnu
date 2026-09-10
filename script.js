@@ -21,11 +21,20 @@
   const cinematicReveal = document.querySelector('#cinematicReveal');
   const revealFrame = cinematicReveal.querySelector('.cinematic-reveal__frame');
   const revealPhoto = document.querySelector('#revealPhoto');
+  let revealStarted = false;
+  let currentPhoto = 0;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   // AUTOMATIC ORIGINALITY REVEAL: preload the real project photos once, then play them in order.
   const playOriginalityReveal = () => {
+    revealStarted = false;
+    currentPhoto = 0;
+    cinematicReveal.classList.remove('is-done', 'is-photos', 'is-outro', 'flash');
+    revealFrame.classList.remove('is-final');
+    revealPhoto.src = './reveal-images/IMG-20260911-WA0014.jpg';
+    document.body.classList.add('reveal-lock');
+    revealStarted = true;
     const vishnuPhotos = [
       './reveal-images/IMG-20260911-WA0014.jpg',
       './reveal-images/IMG-20260911-WA0038.jpg',
@@ -43,25 +52,23 @@
       image.onerror = () => resolve(false);
       image.src = path;
     }));
-    document.body.classList.add('reveal-lock');
     Promise.all(loaded).then(() => {
       const introHold = reducedMotion ? 500 : 2500;
       window.setTimeout(() => {
         cinematicReveal.classList.add('is-photos');
         const timings = [550, 450, 400, 500, 400, 450, 1800];
-        let index = 0;
         const showNext = () => {
-          revealPhoto.src = photoPaths[index];
-          revealFrame.classList.toggle('is-final', index === photoPaths.length - 1);
-          if (!reducedMotion && index > 0 && index < 6) {
+          revealPhoto.src = photoPaths[currentPhoto];
+          revealFrame.classList.toggle('is-final', currentPhoto === photoPaths.length - 1);
+          if (!reducedMotion && currentPhoto > 0 && currentPhoto < 6) {
             cinematicReveal.classList.add('flash');
             window.setTimeout(() => cinematicReveal.classList.remove('flash'), 110);
           }
           window.setTimeout(() => {
-            index += 1;
-            if (index < photoPaths.length) showNext();
+            currentPhoto += 1;
+            if (currentPhoto < photoPaths.length) showNext();
             else finishReveal();
-          }, reducedMotion ? 250 : timings[index]);
+          }, reducedMotion ? 250 : timings[currentPhoto]);
         };
         const finishReveal = () => {
           cinematicReveal.classList.add('is-outro');
@@ -75,6 +82,9 @@
     });
   };
   playOriginalityReveal();
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) playOriginalityReveal();
+  });
 
   // ARCHIVE INDEX MENU
   const setMenu = (isOpen) => {
