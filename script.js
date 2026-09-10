@@ -53,13 +53,16 @@
       image.src = path;
     }));
     Promise.all(loaded).then(() => {
-      const introHold = reducedMotion ? 500 : 2500;
+      const introHold = reducedMotion ? 400 : 2100;
       window.setTimeout(() => {
         cinematicReveal.classList.add('is-photos');
-        const timings = [550, 450, 400, 500, 400, 450, 1800];
+        const timings = [500, 400, 350, 450, 350, 400, 1650];
         const showNext = () => {
+          revealFrame.classList.remove('is-changing');
+          void revealFrame.offsetWidth;
           revealPhoto.src = photoPaths[currentPhoto];
           revealFrame.classList.toggle('is-final', currentPhoto === photoPaths.length - 1);
+          revealFrame.classList.add('is-changing');
           if (!reducedMotion && currentPhoto > 0 && currentPhoto < 6) {
             cinematicReveal.classList.add('flash');
             window.setTimeout(() => cinematicReveal.classList.remove('flash'), 110);
@@ -68,14 +71,14 @@
             currentPhoto += 1;
             if (currentPhoto < photoPaths.length) showNext();
             else finishReveal();
-          }, reducedMotion ? 250 : timings[currentPhoto]);
+          }, reducedMotion ? 220 : timings[currentPhoto]);
         };
         const finishReveal = () => {
           cinematicReveal.classList.add('is-outro');
           window.setTimeout(() => {
             cinematicReveal.classList.add('is-done');
             document.body.classList.remove('reveal-lock');
-          }, reducedMotion ? 900 : 2100);
+          }, reducedMotion ? 800 : 1900);
         };
         showNext();
       }, introHold);

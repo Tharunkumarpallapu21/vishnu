@@ -199,3 +199,6 @@ body{min-width:0}
 @media(prefers-reduced-motion:reduce){.cinematic-reveal__intro p{animation:none;opacity:1;filter:none;transform:none}.cinematic-reveal__intro small{animation:none;opacity:1}.cinematic-reveal__frame img,.cinematic-reveal__frame,.cinematic-reveal.is-outro .cinematic-reveal__outro{transition:none;animation:none}}
 
 body.reveal-lock{overflow:hidden;height:100dvh;touch-action:none}
+
+.cinematic-reveal__frame.is-changing img{animation:photoSnap .18s cubic-bezier(.2,.7,.2,1) both}.cinematic-reveal__frame.is-final.is-changing img{animation:finalPhoto 1.65s ease both}@keyframes photoSnap{from{opacity:.08;transform:scale(1.045);filter:blur(2px)}to{opacity:1;transform:scale(1.012);filter:blur(0)}}
+@media(prefers-reduced-motion:reduce){.cinematic-reveal__frame.is-changing img,.cinematic-reveal__frame.is-final.is-changing img{animation:none}}
