@@ -13,6 +13,7 @@
   const endButton = document.querySelector('#endButton');
   const endScreen = document.querySelector('#endScreen');
   const replayButton = document.querySelector('#replayButton');
+  const timelineLinks = [...document.querySelectorAll('[data-timeline]')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
@@ -38,6 +39,15 @@
     });
   }, { threshold: 0.35 });
   revealSections.forEach((section) => archiveObserver.observe(section));
+
+  // TIMELINE ACTIVE STATE
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      timelineLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.timeline === entry.target.dataset.index));
+    });
+  }, { threshold: 0.52 });
+  revealSections.forEach((section) => timelineObserver.observe(section));
 
   // INTERACTIVE ATMOSPHERE: pointer light and click evidence marks
   if (!reducedMotion && finePointer) {
