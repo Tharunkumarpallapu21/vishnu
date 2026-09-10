@@ -84,3 +84,11 @@ img{display:block;max-width:100%}
 /* REDUCED MOTION */
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.grain,.scratch,.scroll-cue span,.confetti,.spark{animation:none}.reveal,.reveal-section .archive__media,.reveal-section .archive__copy{opacity:1;transform:none;animation:none;transition:none}.archive__media img,.archive-button{transition:none}}
 @keyframes rise{to{opacity:1;transform:none}}@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}@keyframes scratch{0%,100%{transform:translateY(-100%)}50%{transform:translateY(100%)}}@keyframes pulse{50%{opacity:.3}}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(620deg)}}@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.5)}50%{opacity:1;transform:scale(1.4)}}
+
+
+/* INTERACTIVE ATMOSPHERE */
+:root{--pointer-x:50vw;--pointer-y:35vh}
+body::before{background:radial-gradient(ellipse 40% 30% at var(--pointer-x) var(--pointer-y),rgba(180,151,101,.1),transparent 70%),radial-gradient(ellipse at 50% 8%,#29271f 0,#11120f 38%,#070807 82%);transition:background .5s ease}
+.click-evidence{position:fixed;z-index:40;width:18px;height:18px;border:1px solid var(--gold-bright);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) scale(.4);animation:evidence .75s ease-out forwards}.click-evidence::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--gold-bright);opacity:.8}
+@keyframes evidence{to{opacity:0;transform:translate(-50%,-50%) scale(2.8)}}
+@media(prefers-reduced-motion:reduce){.click-evidence{animation:none}.archive__media img{transform:none!important}}
