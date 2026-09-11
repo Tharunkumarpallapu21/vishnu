@@ -18,13 +18,13 @@ The current Manus session has no built-in Firebase connector or OAuth deployment
 
 ## 1. Firebase Console
 
-Open [Firebase Console](https://console.firebase.google.com/) and select `birthday-28cf`.
+Open [Firebase Console](https://console.firebase.google.com/) and select `birthday-28c6f`.
 
 Enable **Authentication → Sign-in method → Anonymous**. Create a **Cloud Firestore database** in production mode. Firebase Functions may require the Blaze plan; review that requirement before deployment. **Do not enable or configure Firebase Storage for this implementation.**
 
 ## 2. Deploy from Google Cloud Shell
 
-In Google Cloud Console for `birthday-28cf`, click **Activate Cloud Shell**. Clone the repository:
+In Google Cloud Console for `birthday-28c6f`, click **Activate Cloud Shell**. Clone the repository:
 
 ```bash
 git clone https://github.com/Tharunkumarpallapu21/vishnu.git
@@ -36,7 +36,7 @@ Authenticate and deploy only Functions and Firestore rules:
 ```bash
 npm install -g firebase-tools
 firebase login --no-localhost
-firebase use birthday-28cf
+firebase use birthday-28c6f
 firebase deploy --only functions,firestore:rules
 ```
 
