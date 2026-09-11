@@ -2,7 +2,7 @@ const { applicationDefault, initializeApp } = require('firebase-admin/app');
 const { getFirestore, FieldValue } = require('firebase-admin/firestore');
 const crypto = require('crypto');
 
-initializeApp({ credential: applicationDefault(), projectId: 'birthday-28c6f' });
+initializeApp({ credential: applicationDefault(), projectId: 'birthday-28cf' });
 const db = getFirestore();
 const rolls = [
   ...Array.from({ length: 60 }, (_, i) => `23F61A05${String.fromCharCode(73 + Math.floor(i / 10))}${i % 10}`),

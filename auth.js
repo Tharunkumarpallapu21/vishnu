@@ -4,8 +4,8 @@ import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/
 
 const firebaseConfig = {
   apiKey: 'AIzaSyArytXLynnCa83TRlWqhuzqkbvZKBGXz3w',
-  authDomain: 'birthday-28c6f.firebaseapp.com',
-  projectId: 'birthday-28c6f',
+  authDomain: 'birthday-28cf.firebaseapp.com',
+  projectId: 'birthday-28cf',
   messagingSenderId: '732567269014',
   appId: '1:732567269014:web:0152319c0340fdd9cddcb7'
 };
