@@ -9,7 +9,7 @@ export default async (request) => {
     return json({ message: 'Sorry 😅 This surprise is only for our class.' }, 400);
   }
   const token = newSessionToken();
-  const result = await claims.setJSON(rollKey(rollNumber), { rollNumber, claimedAt: new Date().toISOString(), sessionToken: token }, { onlyIfNew: true });
+  const result = await claims.set(rollKey(rollNumber), JSON.stringify({ rollNumber, claimedAt: new Date().toISOString(), sessionToken: token }), { onlyIfNew: true });
   if (!result.modified) return json({ message: 'Looks like this roll number has already entered ❤️' }, 409);
   return json({ authorized: true }, 200, { 'set-cookie': sessionCookie(token) });
 };
