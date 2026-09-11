@@ -1,0 +1,68 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, onAuthStateChanged, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
+import { getStorage, ref, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyArytXLynnCa83TRlWqhuzqkbvZKBGXz3w',
+  authDomain: 'birthday-28c6f.firebaseapp.com',
+  projectId: 'birthday-28c6f',
+  storageBucket: 'birthday-28c6f.firebasestorage.app',
+  messagingSenderId: '732567269014',
+  appId: '1:732567269014:web:0152319c0340fdd9cddcb7'
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const functions = getFunctions(app, 'us-central1');
+const storage = getStorage(app);
+const claimRollNumber = httpsCallable(functions, 'claimRollNumber');
+const checkAccess = httpsCallable(functions, 'checkAccess');
+const gate = document.querySelector('#accessGate');
+const form = document.querySelector('#accessForm');
+const input = document.querySelector('#rollNumber');
+const submit = document.querySelector('#accessSubmit');
+const status = document.querySelector('#accessStatus');
+
+const setStatus = (message, kind = '') => { status.textContent = message; status.dataset.kind = kind; };
+const protectedPhotoNames = ['IMG-20260911-WA0014.jpg', 'IMG-20260911-WA0038.jpg', 'IMG-20260911-WA0037.jpg', 'IMG-20260911-WA0045.jpg', 'IMG-20260911-WA0050.jpg', 'IMG-20260911-WA0006.jpg', 'IMG-20260911-WA0003.jpg'];
+const loadProtectedPhotos = async () => Promise.all(protectedPhotoNames.map((name) => getDownloadURL(ref(storage, `reveal/${name}`))));
+const grantAccess = async () => {
+  const photos = await loadProtectedPhotos();
+  gate.classList.add('is-authorized');
+  document.body.classList.remove('auth-lock');
+  window.dispatchEvent(new CustomEvent('access-granted', { detail: { photos } }));
+};
+const denyAccess = (message) => { gate.classList.remove('is-authorized'); document.body.classList.add('auth-lock'); setStatus(message, 'error'); };
+
+const verifyExistingUser = async (user) => {
+  try {
+    const result = await checkAccess();
+    if (result.data?.authorized) await grantAccess();
+    else denyAccess('Please enter your class roll number to continue.');
+  } catch (error) {
+    denyAccess('Connection unavailable. Please try again.');
+  }
+};
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const rollNumber = input.value.trim().toUpperCase();
+  if (!rollNumber) { setStatus('Please enter your roll number.', 'error'); input.focus(); return; }
+  submit.disabled = true;
+  setStatus('VERIFYING ACCESS…');
+  try {
+    if (!auth.currentUser) await signInAnonymously(auth);
+    const result = await claimRollNumber({ rollNumber });
+    if (result.data?.authorized) { setStatus('ACCESS GRANTED. Opening archive…', 'success'); window.setTimeout(() => grantAccess().catch(() => denyAccess('Private archive files are unavailable.')), 420); }
+    else denyAccess('This roll number cannot access the archive.');
+  } catch (error) {
+    const code = error?.details?.code || error?.code || '';
+    if (code.includes('already-exists') || error?.message?.includes('already-used')) denyAccess('Looks like this roll number has already entered ❤️');
+    else if (code.includes('invalid-argument') || error?.message?.includes('invalid-roll')) denyAccess('Sorry 😅 This surprise is only for our class.');
+    else denyAccess('Unable to verify access right now. Please try again.');
+  } finally { submit.disabled = false; }
+});
+
+document.body.classList.add('auth-lock');
+onAuthStateChanged(auth, (user) => { if (user) verifyExistingUser(user); });

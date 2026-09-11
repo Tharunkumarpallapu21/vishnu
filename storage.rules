@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /reveal/{fileName} {
+      allow read: if request.auth != null
+        && firestore.get(/databases/(default)/documents/authorizedUsers/$(request.auth.uid)).data.authorized == true;
+      allow write, delete: if false;
+    }
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

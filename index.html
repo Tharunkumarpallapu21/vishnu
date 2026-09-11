@@ -11,9 +11,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <section class="access-gate" id="accessGate" aria-labelledby="accessTitle">
+    <div class="access-gate__inner">
+      <p class="eyebrow">PRIVATE CLASS ARCHIVE / M7-001</p>
+      <p class="access-gate__kicker">BEFORE WE BEGIN…</p>
+      <h1 id="accessTitle">Enter your<br><em>class roll number</em></h1>
+      <form id="accessForm" novalidate>
+        <label for="rollNumber">ENTER ROLL NUMBER</label>
+        <input id="rollNumber" name="rollNumber" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="23F61A05M7" required>
+        <button type="submit" id="accessSubmit">ENTER <span aria-hidden="true">↗</span></button>
+        <p class="access-gate__status" id="accessStatus" role="status" aria-live="polite"></p>
+      </form>
+      <p class="access-gate__note">One roll number. One entry. ♥</p>
+    </div>
+  </section>
   <section class="cinematic-reveal" id="cinematicReveal" aria-label="The originality of Vishnu reveals" aria-live="polite">
     <div class="cinematic-reveal__intro"><p>The originality of Vishnu reveals…</p><small>Wait… you haven't seen everything yet.</small></div>
-    <div class="cinematic-reveal__frame" aria-hidden="true"><div class="cinematic-reveal__flash"></div><img id="revealPhoto" src="./reveal-images/IMG-20260911-WA0014.jpg" alt=""></div>
+    <div class="cinematic-reveal__frame" aria-hidden="true"><div class="cinematic-reveal__flash"></div><img id="revealPhoto" alt=""></div>
     <div class="cinematic-reveal__outro"><p>Yep… That's Vishnu. 😂</p><small>Happy Birthday, M7 ❤️</small></div>
   </section>
   <div class="grain" aria-hidden="true"></div>
@@ -139,6 +153,7 @@
       <div class="end-screen__inner"><p class="eyebrow">ARCHIVE STATUS</p><p class="end-code">M7<br>VISHNU</p><div class="status-rule"></div><p class="status-label">STATUS: <strong>LEGENDARY</strong></p><p class="status-label">FILE: <strong>NEVER TO BE DELETED</strong></p><h2 id="end-title">THE END</h2><p>Happy Birthday, M7. <span aria-hidden="true">🎂</span></p><button class="archive-button" id="replayButton" type="button">REPLAY THE ARCHIVES <span aria-hidden="true">↺</span></button></div>
     </section>
   </main>
+  <script type="module" src="auth.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

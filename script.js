@@ -27,15 +27,15 @@
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   // AUTOMATIC ORIGINALITY REVEAL: preload the real project photos once, then play them in order.
-  const playOriginalityReveal = () => {
+  const playOriginalityReveal = (protectedPhotos = null) => {
     revealStarted = false;
     currentPhoto = 0;
     cinematicReveal.classList.remove('is-done', 'is-photos', 'is-outro', 'flash');
     revealFrame.classList.remove('is-final');
-    revealPhoto.src = './reveal-images/IMG-20260911-WA0014.jpg';
+    revealPhoto.removeAttribute('src');
     document.body.classList.add('reveal-lock');
     revealStarted = true;
-    const vishnuPhotos = [
+    const vishnuPhotos = protectedPhotos || [
       './reveal-images/IMG-20260911-WA0014.jpg',
       './reveal-images/IMG-20260911-WA0038.jpg',
       './reveal-images/IMG-20260911-WA0037.jpg',
@@ -84,7 +84,7 @@
       }, introHold);
     });
   };
-  playOriginalityReveal();
+  window.addEventListener('access-granted', (event) => playOriginalityReveal(event.detail?.photos), { once: true });
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) playOriginalityReveal();
   });
