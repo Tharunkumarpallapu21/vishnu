@@ -34,6 +34,13 @@ const grantAccess = async () => {
   window.dispatchEvent(new CustomEvent('access-granted', { detail: { photos } }));
 };
 const denyAccess = (message) => { gate.classList.remove('is-authorized'); document.body.classList.add('auth-lock'); setStatus(message, 'error'); };
+const explainFirebaseError = (error) => {
+  const code = error?.code || '';
+  const message = error?.message || '';
+  if (code.includes('configuration-not-found') || message.includes('CONFIGURATION_NOT_FOUND')) return 'Firebase Anonymous Auth is not enabled yet. Please enable it in Firebase Console.';
+  if (code.includes('not-found') || message.includes('NOT_FOUND')) return 'The Firebase claim service is not deployed yet. Please deploy the Cloud Functions.';
+  return 'Unable to verify access right now. Please try again.';
+};
 
 const verifyExistingUser = async (user) => {
   try {
@@ -41,7 +48,7 @@ const verifyExistingUser = async (user) => {
     if (result.data?.authorized) await grantAccess();
     else denyAccess('Please enter your class roll number to continue.');
   } catch (error) {
-    denyAccess('Connection unavailable. Please try again.');
+    denyAccess(explainFirebaseError(error));
   }
 };
 
@@ -60,7 +67,7 @@ form.addEventListener('submit', async (event) => {
     const code = error?.details?.code || error?.code || '';
     if (code.includes('already-exists') || error?.message?.includes('already-used')) denyAccess('Looks like this roll number has already entered ❤️');
     else if (code.includes('invalid-argument') || error?.message?.includes('invalid-roll')) denyAccess('Sorry 😅 This surprise is only for our class.');
-    else denyAccess('Unable to verify access right now. Please try again.');
+    else denyAccess(explainFirebaseError(error));
   } finally { submit.disabled = false; }
 });
 
