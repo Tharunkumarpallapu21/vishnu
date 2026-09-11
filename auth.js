@@ -1,13 +1,11 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
-import { getStorage, ref, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyArytXLynnCa83TRlWqhuzqkbvZKBGXz3w',
   authDomain: 'birthday-28c6f.firebaseapp.com',
   projectId: 'birthday-28c6f',
-  storageBucket: 'birthday-28c6f.firebasestorage.app',
   messagingSenderId: '732567269014',
   appId: '1:732567269014:web:0152319c0340fdd9cddcb7'
 };
@@ -15,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const functions = getFunctions(app, 'us-central1');
-const storage = getStorage(app);
 const claimRollNumber = httpsCallable(functions, 'claimRollNumber');
 const checkAccess = httpsCallable(functions, 'checkAccess');
 const gate = document.querySelector('#accessGate');
@@ -25,10 +22,14 @@ const submit = document.querySelector('#accessSubmit');
 const status = document.querySelector('#accessStatus');
 
 const setStatus = (message, kind = '') => { status.textContent = message; status.dataset.kind = kind; };
-const protectedPhotoNames = ['IMG-20260911-WA0014.jpg', 'IMG-20260911-WA0038.jpg', 'IMG-20260911-WA0037.jpg', 'IMG-20260911-WA0045.jpg', 'IMG-20260911-WA0050.jpg', 'IMG-20260911-WA0006.jpg', 'IMG-20260911-WA0003.jpg'];
-const loadProtectedPhotos = async () => Promise.all(protectedPhotoNames.map((name) => getDownloadURL(ref(storage, `reveal/${name}`))));
+const revealPhotoPaths = ['./reveal-images/IMG-20260911-WA0014.jpg', './reveal-images/IMG-20260911-WA0038.jpg', './reveal-images/IMG-20260911-WA0037.jpg', './reveal-images/IMG-20260911-WA0045.jpg', './reveal-images/IMG-20260911-WA0050.jpg', './reveal-images/IMG-20260911-WA0006.jpg', './reveal-images/IMG-20260911-WA0003.jpg'];
+const loadRevealPhotos = async () => {
+  const responses = await Promise.all(revealPhotoPaths.map((path) => fetch(path, { method: 'HEAD', cache: 'no-store' })));
+  if (responses.some((response) => !response.ok)) throw new Error('Reveal photo unavailable.');
+  return revealPhotoPaths;
+};
 const grantAccess = async () => {
-  const photos = await loadProtectedPhotos();
+  const photos = await loadRevealPhotos();
   gate.classList.add('is-authorized');
   document.body.classList.remove('auth-lock');
   window.dispatchEvent(new CustomEvent('access-granted', { detail: { photos } }));
