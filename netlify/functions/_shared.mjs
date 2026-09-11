@@ -20,8 +20,9 @@ export const json = (body, status = 200, headers = {}) => new Response(JSON.stri
 });
 
 export const supabaseRequest = async (path, init = {}) => {
-  const baseUrl = String(process.env.SUPABASE_URL || '').replace(/\/$/, '');
-  const secretKey = process.env.SUPABASE_SECRET_KEY;
+  const runtimeEnv = typeof Netlify !== 'undefined' && Netlify.env ? Netlify.env : undefined;
+  const baseUrl = String((await runtimeEnv?.get('SUPABASE_URL')) || '').replace(/\/$/, '');
+  const secretKey = await runtimeEnv?.get('SUPABASE_SECRET_KEY');
   if (!baseUrl || !secretKey) throw new Error('Supabase configuration is missing.');
   return fetch(`${baseUrl}/rest/v1${path}`, {
     ...init,
