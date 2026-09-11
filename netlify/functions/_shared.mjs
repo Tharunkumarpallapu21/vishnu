@@ -28,7 +28,6 @@ export const supabaseRequest = async (path, init = {}) => {
     ...init,
     headers: {
       apikey: secretKey,
-      Authorization: `Bearer ${secretKey}`,
       'content-type': 'application/json',
       ...(init.headers || {})
     }
